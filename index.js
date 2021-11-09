@@ -111,16 +111,19 @@ displayCards.forEach((card) =>
     } else {
       if (choosenCard == animalIndex) {
         console.log("correct!");
+        choosenCard = -1;
       } else {
+        choosenCard = -1;
         console.log("wrong!");
+        setTimeout(() => {
+          pickedCard.classList.add("closed");
+          card.classList.add("closed");
+        }, 1000);
       }
 
-      choosenCard = -1;
       const pickedCard = cardContainer.querySelector(
         `.card[data-number="${firstCardIndex}"]`
       );
-      pickedCard.classList.add("closed");
-      card.classList.add("closed");
     }
   })
 );

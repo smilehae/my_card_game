@@ -57,17 +57,24 @@ h1 {
   cursor: pointer;
   transition: all 0.3s;
 }
-.card:hover {
-  background-color: white;
-  box-shadow: 0 0 5px 1px rgba(22, 59, 5, 0.452), inset 0 0 0 5px #efefef;
+.card.closed:hover {
+  transform: scale(1.05);
 }
 
 .card.closed {
   background-color: darkolivegreen;
   box-shadow: 0 0 5px 1px rgba(78, 78, 78, 0.452),
-    inset 0 0 0 5px rgb(61, 73, 38);
+    inset 0 0 0 5px rgb(70, 83, 46);
 }
 .card-item {
   font-size: 4.5rem;
   color: rgb(128, 145, 100);
+}
+.closed .card-item {
+  opacity: 0;
+}
+
+.card.closed::after {
+  content: url(./star-and-crescent-solid.png);
+  position: absolute;
 }
