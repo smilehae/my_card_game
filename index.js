@@ -105,6 +105,79 @@ let player1Score = 0;
 let player2Score = 0;
 let ansCount = 0;
 
+cardContainer.addEventListener("click", (e) => {
+  if (e.target.matches(".card")) {
+    //눈에 보이는 장치 : 카드의 모양과 색깔을 확인시켜준다.
+    const card = e.target;
+    const animalIndex = card.dataset.animal;
+    const numberIndex = card.dataset.number;
+    const cardPic = card.querySelector("i");
+    card.classList.remove("closed");
+    cardPic.classList.remove("fa-star-and-crescent");
+    cardPic.classList.add(`fa-${animals[animalIndex]}`);
+    cardPic.style.color = `${colors[animalIndex]}`;
+
+    //점수 획득용 장치
+    //첫번쨰 카드 선택
+    if (choosenCard == -1) {
+      choosenCard = animalIndex;
+      firstCardIndex = numberIndex;
+    }
+    //두번째 카드 선택
+    else {
+      if (choosenCard == animalIndex) {
+        console.log("correct!");
+        choosenCard = -1;
+        ansCount++;
+        if (trials == 0 || trials % 2 == 0) {
+          player1Score += 10;
+          scoreText1.textContent = player1Score;
+        } else {
+          player2Score += 10;
+          scoreText2.textContent = player2Score;
+        }
+        //여기서 우승자 발생!
+        if (ansCount == numberOfCard) {
+          if (player1Score == player2Score) {
+            players[0].classList.add("draw");
+            players[1].classList.add("draw");
+            scoreText1.textContent = "draw🎈";
+            scoreText2.textContent = "draw🎈";
+          } else if (player1Score > player2Score) {
+            console.log("player1 wins!");
+            players[0].classList.add("winner");
+            players[1].classList.add("loser");
+            scoreText1.textContent = "win🥇";
+            scoreText2.textContent = "lose💧";
+          } else {
+            console.log("player2 wins!");
+            players[0].classList.add("loser");
+            players[1].classList.add("winner");
+            scoreText2.textContent = "win🥇";
+            scoreText1.textContent = "lose💧";
+          }
+        }
+      } else {
+        choosenCard = -1;
+        console.log("wrong!");
+        const pickedCard = cardContainer.querySelector(
+          `.card[data-number="${firstCardIndex}"]`
+        );
+        setTimeout(() => {
+          pickedCard.classList.add("closed");
+          card.classList.add("closed");
+        }, 1000);
+      }
+      trials++;
+      trialsText.textContent = trials;
+      setTimeout(() => {
+        players.forEach((player) => {
+          player.classList.toggle("active");
+        });
+      }, 1000);
+    }
+  }
+});
 displayCards.forEach((card) =>
   card.addEventListener("click", () => {
     //눈에 보이는 장치 : 카드의 모양과 색깔을 확인시켜준다.
