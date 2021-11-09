@@ -88,13 +88,15 @@ function generateCard(n) {
     .join("");
   cardContainer.innerHTML = cardContent;
 }
-const numberOfCard = 6;
-generateCard(numberOfCard);
+let numberOfCard = 5;
+//generateCard(numberOfCard);
 const displayCards = Array.from(document.querySelectorAll(".card"));
 const trialsText = document.querySelector(".trials");
 const players = document.querySelectorAll(".player");
 const scoreText1 = players[0].querySelector(".score");
 const scoreText2 = players[1].querySelector(".score");
+const form = document.querySelector("#question");
+const giveCardBtn = form.querySelector("button");
 
 let choosenCard = -1;
 let firstCardIndex = -1;
@@ -175,3 +177,9 @@ displayCards.forEach((card) =>
     }
   })
 );
+
+giveCardBtn.addEventListener("click", () => {
+  numberOfCard = form.querySelector("#card-num").value || 5;
+  generateCard(numberOfCard);
+  form.classList.add("erase");
+});

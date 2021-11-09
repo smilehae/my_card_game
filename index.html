@@ -5,50 +5,41 @@
       src="https://kit.fontawesome.com/5316a0a50e.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&display=swap" rel="stylesheet">
-     <link rel="stylesheet" href="index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" />
     <title>icon Card Game!</title>
-    <link rel="shortcut icon" href="card_favicon.ico">
+    <link rel="shortcut icon" href="card_favicon.ico" />
   </head>
   <body>
     <h1>Animal Card Game</h1>
-    <h3>Trials : <p class="trials">0</p></h3>
+    <h3>
+      Trials :
+      <p class="trials">0</p>
+    </h3>
     <header>
-      <div class="player  active  ">
+      <div class="player active">
         <p>Player 1</p>
         <p class="score">0</p>
       </div>
-      <div class="player ">
+      <div class="player">
         <p>Player 2</p>
         <p class="score">0</p>
       </div>
     </header>
     <div id="container">
-      <div id="card-container">
-        <div class="card closed"><i class="fas fa-star-and-crescent card-item"></i></i></div>
-
-        <div class="card"><i class="fas fa-fish card-item"></i></div>
-
-        <div class="card closed"><i class="fas fa-cat card-item"></i></div>
-
-        <div class="card"><i class="fas fa-paw card-item"></i></i></div>
-
-        <div class="card"><i class="fas fa-crow card-item"></i></div>
-        <div class="card"><i class="fas fa-otter card-item"></i></div>
-
-        <div class="card"><i class="fas fa-hippo card-item"></i></div>
-
-        <div class="card"><i class="fas fa-dog card-item"></i></div>
-
-        <div class="card"><i class="fas fa-kiwi-bird card-item"></i></div>
-        <div class="card"><i class="fas fa-dove card-item"></i></div>
-
-        <div class="card" ><i class="fas fa-horse card-item" style="color:blue;"></i></div>
-      </div>
+      <div id="card-container"></div>
     </div>
-    
+    <div id="question">
+      <h2>How many pairs of card do you want?</h2>
+      <input type="text" id="card-num" required />
+      <button>Give me Card!</button>
+    </div>
+
     <script src="index.js"></script>
   </body>
 </html>
