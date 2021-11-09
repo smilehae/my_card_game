@@ -5,6 +5,7 @@
 
 html {
   box-sizing: border-box;
+  font-family: "Pacifico", cursive;
 }
 
 body {
@@ -20,10 +21,25 @@ body {
 h1 {
   color: black;
   text-align: center;
-  font-family: "Mochiy Pop P One", sans-serif;
   padding: 20px;
+  font-family: "Lobster", cursive;
 }
 
+h3 {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+
+header {
+  display: flex;
+  justify-content: space-around;
+}
+
+.trials {
+  color: darkolivegreen;
+  display: inline-block;
+}
 #container {
   background-color: rgba(255, 255, 255, 0.425);
   max-width: 1200px;
@@ -77,4 +93,43 @@ h1 {
 .card.closed::after {
   content: url(./star-and-crescent-solid.png);
   position: absolute;
+}
+
+.player {
+  background-color: #f5f5f5;
+  display: inline-block;
+  width: 200px;
+  padding: 10px 10px 0px 10px;
+  text-align: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+
+.player.active {
+  background-color: darkorange;
+}
+
+.player .score {
+  font-size: 2rem;
+}
+
+.player.winner {
+  background-color: rgb(255, 94, 0);
+  color: white;
+  transform: scale(1.2);
+  position: relative;
+  top: -8px;
+}
+.player.loser {
+  background-color: black;
+  color: white;
+}
+.player.draw {
+  background-color: rgb(183, 93, 206);
+  color: white;
+  transform: scale(1.1);
+  position: relative;
+  top: -5px;
 }
