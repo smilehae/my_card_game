@@ -73,13 +73,16 @@ function generateCard(n) {
       name: animals[i],
       color: colors[i],
     };
+    card.number = i;
     cards.push(card);
-    cards.push(card);
+    const newCard = JSON.parse(JSON.stringify(card));
+    newCard.number = i + n / 2;
+    cards.push(newCard);
   }
   shuffleCard(n);
   const cardContent = cards
     .map((card) => {
-      return `<div class="card closed" data-animal=${card.index}><i class="fas fa-star-and-crescent card-item"></i></div>`;
+      return `<div class="card closed" data-animal=${card.index} data-number=${card.number}><i class="fas fa-star-and-crescent card-item"></i></div>`;
       // return `<div class="card closed" data-animal=${card.index}><i class="fas fa-${card.name} card-item" style="color:${card.color};"></i></div>`;
     })
     .join("");
@@ -87,14 +90,37 @@ function generateCard(n) {
 }
 generateCard(10);
 const displayCards = Array.from(document.querySelectorAll(".card"));
+let choosenCard = -1;
+let firstCardIndex = -1;
 
 displayCards.forEach((card) =>
   card.addEventListener("click", () => {
+    //눈에 보이는 장치 : 카드의 모양과 색깔을 확인시켜준다.
     const animalIndex = card.dataset.animal;
+    const numberIndex = card.dataset.number;
     const cardPic = card.querySelector("i");
     card.classList.remove("closed");
     cardPic.classList.remove("fa-star-and-crescent");
     cardPic.classList.add(`fa-${animals[animalIndex]}`);
     cardPic.style.color = `${colors[animalIndex]}`;
+
+    //점수 획득용 장치
+    if (choosenCard == -1) {
+      choosenCard = animalIndex;
+      firstCardIndex = numberIndex;
+    } else {
+      if (choosenCard == animalIndex) {
+        console.log("correct!");
+      } else {
+        console.log("wrong!");
+      }
+
+      choosenCard = -1;
+      const pickedCard = cardContainer.querySelector(
+        `.card[data-number="${firstCardIndex}"]`
+      );
+      pickedCard.classList.add("closed");
+      card.classList.add("closed");
+    }
   })
 );
