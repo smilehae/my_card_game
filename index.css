@@ -62,7 +62,7 @@ h1 {
   box-shadow: 0 0 5px 1px rgba(22, 59, 5, 0.452), inset 0 0 0 5px #efefef;
 }
 
-.card.fliped {
+.card.closed {
   background-color: darkolivegreen;
   box-shadow: 0 0 5px 1px rgba(78, 78, 78, 0.452),
     inset 0 0 0 5px rgb(61, 73, 38);

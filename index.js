@@ -79,10 +79,22 @@ function generateCard(n) {
   shuffleCard(n);
   const cardContent = cards
     .map((card) => {
-      return `<div class="card" data-animal=${card.index}><i class="fas fa-${card.name} card-item" style="color:${card.color};"></i></div>`;
+      return `<div class="card closed" data-animal=${card.index}><i class="fas fa-star-and-crescent card-item"></i></div>`;
+      // return `<div class="card closed" data-animal=${card.index}><i class="fas fa-${card.name} card-item" style="color:${card.color};"></i></div>`;
     })
     .join("");
   cardContainer.innerHTML = cardContent;
 }
-generateCard(20);
+generateCard(10);
 const displayCards = Array.from(document.querySelectorAll(".card"));
+
+displayCards.forEach((card) =>
+  card.addEventListener("click", () => {
+    const animalIndex = card.dataset.animal;
+    const cardPic = card.querySelector("i");
+    card.classList.remove("closed");
+    cardPic.classList.remove("fa-star-and-crescent");
+    cardPic.classList.add(`fa-${animals[animalIndex]}`);
+    cardPic.style.color = `${colors[animalIndex]}`;
+  })
+);
